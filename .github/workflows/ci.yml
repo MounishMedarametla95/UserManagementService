@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Java CI with Maven and Docker
 
 on:
   push:
@@ -21,5 +21,16 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: build with maven
-        run: mvn clean install -DskipTests=false
+      - name: cache maven packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+              ${{ runner.os }}-maven-
+
+      - name: Build with Maven (and run tests)
+        run: mvn clean install --no-transfer-progress
+
+      - name: Build Docker image
+        run: docker build -t usermanagement-service .

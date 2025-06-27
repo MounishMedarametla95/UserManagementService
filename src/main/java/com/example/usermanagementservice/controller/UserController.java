@@ -29,4 +29,5 @@ public class UserController {
         userService.addUser(user);
         return "User added Successfully";
     }
+
 }

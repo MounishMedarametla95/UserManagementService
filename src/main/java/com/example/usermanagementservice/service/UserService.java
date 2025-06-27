@@ -27,4 +27,23 @@ public class UserService {
     public void addUser(UserDTO user) {
         users.add(user);
     }
+
+    public void printDebug() {
+        System.out.println("DEBUG: not needed in prod");
+    }
+
+    public String unusedMethod() {
+        return "I am never called";
+    }
+
+    public void foo() {
+        System.out.println("Copy this logic");
+        System.out.println("Copy this logic");
+    }
+
+    public void bar() {
+        System.out.println("Copy this logic");
+        System.out.println("Copy this logic");
+    }
+
 }
